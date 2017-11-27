@@ -8,7 +8,7 @@
   };
 
 
-  var S = self.Select = function(el, args) {
+  var S = window.Select = function(el, args) {
     var s = this;
     s.optionToElMap = {};
     s.elToOptionMap = {};
@@ -46,7 +46,7 @@
         });
       }
       s.optionEls = s.dropdown.childNodes;
-      if (!s.optionEls || !s.optionEls.length) throw 'Error getting options';
+      if (!s.optionEls || !s.optionEls.length) throw new Error('Error getting options');
     }
     catch (e) {
       console.log(e);
@@ -59,7 +59,7 @@
       s.selection.classList.add('empty');
     }
 
-    if (s.selected) s.select(o);
+    if (s.selected) s.select(s.selected);
 
     s.element.addEventListener('keydown', function(e) {
       console.log(e.key);
@@ -74,6 +74,7 @@
         case ' ':
           s.select(s.hovered);
           return e.preventDefault();
+        // no default
       }
     });
 
