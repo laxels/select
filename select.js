@@ -35,7 +35,7 @@
     try {
       if (s.options) {
         s.element.innerHTML = '';
-        for(var i=0; i<s.options.length; i++) {
+        for(i=0; i<s.options.length; i++) {
           var o = s.options[i];
           s.element.insertAdjacentHTML('beforeend', '<option value="'+s.getValue(o)+'">'+s.getLabel(o)+'</option>');
           var id = 'select-option-'+Math.random();
@@ -83,8 +83,8 @@
 
     document.addEventListener('click', function(){s.close()});
 
-    for (var i=0; i<s.optionEls.length; i++) {
-      var o = s.optionEls[i];
+    for (i=0; i<s.optionEls.length; i++) {
+      o = s.optionEls[i];
       o.addEventListener('mouseenter', function() {
         s.hover(s.elToOption(this));
       });
