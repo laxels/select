@@ -35,7 +35,8 @@
     try {
       if (s.options) {
         s.element.innerHTML = '';
-        s.options.forEach(function(o){
+        for(var i=0; i<s.options.length; i++) {
+          var o = s.options[i];
           s.element.insertAdjacentHTML('beforeend', '<option value="'+s.getValue(o)+'">'+s.getLabel(o)+'</option>');
           var id = 'select-option-'+Math.random();
           var optionContents = s.getLabel(o);
@@ -43,7 +44,7 @@
           s.dropdown.insertAdjacentHTML('beforeend', '<div class="select-option" id="'+id+'">'+optionContents+'</div>');
           s.optionToElMap[s.getLabel(o)] = s.dropdown.lastChild;
           s.elToOptionMap[s.dropdown.lastChild.id] = o;
-        });
+        }
       }
       s.optionEls = s.dropdown.childNodes;
       if (!s.optionEls || !s.optionEls.length) throw new Error('Error getting options');
@@ -82,7 +83,8 @@
 
     document.addEventListener('click', function(){s.close()});
 
-    s.optionEls.forEach(function(o) {
+    for (var i=0; i<s.optionEls.length; i++) {
+      var o = s.optionEls[i];
       o.addEventListener('mouseenter', function() {
         s.hover(s.elToOption(this));
       });
@@ -90,7 +92,7 @@
         s.select(s.elToOption(this));
         e.stopPropagation();
       });
-    });
+    }
 
   };
 
